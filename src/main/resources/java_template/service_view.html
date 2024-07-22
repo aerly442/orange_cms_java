@@ -1,0 +1,148 @@
+package #$PackageName#.service;
+
+import #$PackageName#.dao.*;
+
+import #$PackageName#.entity.*;
+
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import #$PackageName#.dao.#$ClassName0#Dao;
+
+import com.gfrjxz.cms.util.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
+
+@Service
+public class #$ClassName0#Service {
+
+@Autowired
+private #$ClassName0#Dao #$ClassName#Dao;
+
+ 
+
+/**
+* @description 001 根据用户id获取一个用户实例
+* @param
+* @author
+* @date
+* @return
+*/
+public #$ClassName0# getSinger(Integer id){
+
+    QueryWrapper<#$ClassName0#> wrapper = new QueryWrapper<#$ClassName0#>();
+    wrapper.eq("id", id);
+    #$ClassName0# u = #$ClassName#Dao.selectOne(wrapper);
+    return u;
+
+ }
+
+public #$ClassName0# getSingerBy(Map<String,Object> map){
+
+    QueryWrapper<#$ClassName0#> wrapper = new QueryWrapper<#$ClassName0#>();
+    for (String key : map.keySet()) {
+        wrapper.eq(key, map.get(key));
+    }
+    wrapper.last("limit 1");
+    #$ClassName0# u = #$ClassName#Dao.selectOne(wrapper);
+    return u;
+
+}
+
+public List<#$ClassName0#> getAll(){
+
+    QueryWrapper<#$ClassName0#> wrapper = new QueryWrapper<#$ClassName0#>();
+    wrapper.ne("id", 0);
+    return #$ClassName#Dao.selectList(wrapper);
+}
+private QueryWrapper<#$ClassName0#> getSearchWrapper(Map<String, Object> map){
+
+   
+    QueryWrapper<#$ClassName0#> wrapper = new QueryWrapper<#$ClassName0#>();
+    if (map!=null &&  map.size() > 0){    
+
+        for (String key : map.keySet()) {
+            wrapper.like(key, map.get(key));
+        }
+
+    }       
+    return wrapper;
+   
+
+
+}
+
+public List<#$ClassName0#> search(Map<String, Object> map,Integer pageIndex,Integer pageSize) {
+
+     pageSize = pageSize > 0 ? pageSize : 20;
+     pageIndex = pageIndex <= 1 ? 1 : pageIndex;
+     Integer offset=(pageIndex - 1) * pageSize;
+     QueryWrapper<#$ClassName0#> wrapper = this.getSearchWrapper(map);
+     wrapper.last("limit "+ offset+","+ pageSize);
+     return #$ClassName#Dao.selectList(wrapper);
+  }
+
+
+public Integer getSearchCount(Map<String, Object> map) {
+
+    QueryWrapper<#$ClassName0#> wrapper = this.getSearchWrapper(map);
+
+    Integer count = #$ClassName#Dao.selectCount(wrapper);
+
+    return count;
+}
+
+
+
+public boolean add(#$ClassName0# u){
+
+    int result = #$ClassName#Dao.insert(u);
+    return result >0;
+
+}
+
+public boolean update(#$ClassName0# u) {
+
+
+    UpdateWrapper<#$ClassName0#> updateWrapper = new UpdateWrapper<#$ClassName0#>();
+    updateWrapper.eq("id", u.getId());
+    #$ClassUpdateWrapper#
+    int result = #$ClassName#Dao.update(null, updateWrapper);
+    return result > 0;
+
+}
+
+public boolean updateBy(#$ClassName0# u,Map<String, Object> map) {
+
+    QueryWrapper<#$ClassName0#> wrapper = new QueryWrapper<#$ClassName0#>();
+    for (String key : map.keySet()) {
+        wrapper.eq(key, map.get(key));
+    }
+    int result = #$ClassName#Dao.update(u, wrapper);
+    return result > 0;
+
+}
+
+public void delete(Integer id){
+
+    #$ClassName#Dao.deleteById(id);
+}
+
+public void deleteBy(Map<String, Object> map) {
+
+    QueryWrapper<#$ClassName0#> wrapper = new QueryWrapper<#$ClassName0#>();
+    for (String key : map.keySet()) {
+        wrapper.eq(key, map.get(key));
+        }
+        #$ClassName#Dao.delete(wrapper);
+     }
+
+}

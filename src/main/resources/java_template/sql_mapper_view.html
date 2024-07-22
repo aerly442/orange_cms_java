@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="#$PackageName#.dao.#$ClassName#Dao">
+<!-- 可以采用mybatis-plus 对应的方法
+<select id="getSinger" resultType="#$PackageName#.entity.#$ClassName#">
+        SELECT * FROM #$TableName# where Id=#{Id}
+    </select>
+    <select id="getSingerBy" resultType="#$PackageName#.entity.#$ClassName#" >
+        SELECT * FROM #$TableName# where
+            ${fieldName}=#{fieldValue}
+        <if test="otherWhere != null and otherWhere!=''">
+           and ${otherWhere}
+        </if>
+
+        limit 1
+
+    </select>
+
+    <select id="getAll" resultType="java.util.HashMap">
+        SELECT * FROM #$TableName#
+    </select>
+    
+     <select id="search" resultType="java.util.HashMap">
+        SELECT ${fields} FROM #$TableName#  where
+        ${fieldName}=#{fieldValue}
+        <if test="fieldName1 != null and fieldName1!=''">
+             and ${fieldName1} =${fieldValue1}
+        </if>
+
+        <if test="fieldName2 != null and fieldName2!=''">
+            and ${fieldName2} =${fieldValue2}
+        </if>
+
+        <if test="fieldName3 != null and fieldName3!=''">
+            and ${fieldName3} =${fieldValue3}
+        </if>
+
+        <if test="otherWhere != null and otherWhere!=''">
+           and ${otherWhere}
+        </if>
+
+        order by ${order_by}
+
+        limit #{offset},#{limit}
+
+    </select>
+
+
+    <insert id="add" parameterType="#$PackageName#.entity.#$ClassName#" >
+        insert into #$TableName#
+       (
+            <?php 
+              $strSQL = '' ;
+              foreach ($data as $index=>$item) { 
+                $endTag = ",";
+                if  ($item->fieldname ==="Id" ||  $item->fieldname ==="id"){continue;}
+                $strSQL .=$item->fieldname.$endTag;
+             }
+              echo substr($strSQL,0,strlen($strSQL)-1);
+             ?>
+        )      
+        values
+        (
+
+            <?php 
+             $strSQL = '' ;
+             foreach ($data as  $index=>$item) { 
+                $endTag = ",";
+                 if  ($item->fieldname ==="Id" ||  $item->fieldname ==="id"){continue;}            
+                 $strSQL .= '#{'.$item->fieldname.'}'.$endTag;
+             }
+             echo substr($strSQL,0,strlen($strSQL)-1);
+             ?>
+       
+     
+        )
+    </insert>
+ 
+
+ 
+    <update id="update" parameterType="#$PackageName#.entity.#$ClassName#">
+        update #$TableName# set
+        <?php 
+        $strSQL = '' ;
+        foreach ($data as  $index=>$item) { 
+            $endTag = ",";
+            if  ($item->fieldname ==="Id" ||  $item->fieldname ==="id"){continue;}        
+            $strSQL .= $item->fieldname.' = #{'.$item->fieldname.'}'.$endTag;  
+        }
+        echo substr($strSQL,0,strlen($strSQL)-1);
+        ?>      
+        where Id=#{Id}
+    </update>
+
+    <update id="updateBy" >
+        update #$TableName# set
+       
+        <?php 
+         $strSQL = '' ;
+        foreach ($data as  $index=>$item) { 
+             $endTag = ",";
+             if  ($item->fieldname ==="Id" ||  $item->fieldname ==="id"){continue;}
+
+             $strSQL .= $item->fieldname.' = #{'.$item->fieldname.'}'.$endTag;  
+        }
+        echo substr($strSQL,0,strlen($strSQL)-1);
+        ?>   
+
+
+        where ${fieldName}=#{fieldValue}
+        <if test="fieldName1 != null and fieldName1!=''">
+            and ${fieldName3} =${fieldValue1}
+        </if>
+
+        <if test="fieldName2 != null and fieldName2!=''">
+            and ${fieldName2} =${fieldValue2}
+        </if>
+
+        <if test="fieldName3 != null and fieldName3!=''">
+            and ${fieldName3} =${fieldValue3}
+        </if>
+
+        <if test="otherWhere != null and otherWhere!=''">
+           and ${otherWhere}
+        </if>
+    </update>
+    <delete id="delete">
+        delete from #$TableName# where Id=#{Id}
+    </delete>
+
+    <delete id="deleteBy">
+        delete from #$TableName# where ${fieldName}=#{fieldValue}
+
+        <if test="fieldName1 != null and fieldName1!=''">
+            and ${fieldName1} =${fieldValue1}
+        </if>
+
+        <if test="fieldName2 != null and fieldName2!=''">
+            and ${fieldName2} =${fieldValue2}
+        </if>
+
+        <if test="fieldName3 != null and fieldName3!=''">
+            and ${fieldName3} =${fieldValue3}
+        </if>
+
+        <if test="otherWhere != null and otherWhere!=''">
+           and ${otherWhere}
+        </if>
+    </delete>
+
+    -->
+
+</mapper>

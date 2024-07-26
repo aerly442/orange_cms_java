@@ -33,6 +33,11 @@ var headerJson =  {
 
 }
 
+var listHeaderJson = headerJson ;
+var detailHeaderJson = headerJson ;
+var editHeaderJson = headerJson ;
+
+
 //遇到这个字段则使用回调函数处理
 var fieldFunction = {
     //如果是list页面字段为power则调用回调函数

@@ -16,4 +16,6 @@ public interface NewsTagDao extends BaseMapper<NewsTag> {
     //@Select("select * from user where id>#{id}")
     //List<User> getList(@Param("id") int id);
 
+
+
 }

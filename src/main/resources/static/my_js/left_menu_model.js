@@ -20,7 +20,7 @@ $(function () {
                     }
                     let menuHtml = `<li>
                         <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block ">
-                            <i class="material-icons">widgets</i>
+                            <i class="material-icons">${item.cssclass}</i>
                             <span>${item.name}</span>
                         </a>
                         <ul class="ml-menu" style="display: none;">  
@@ -37,6 +37,7 @@ $(function () {
                 var $content = $this.next();
     
                 if ($($this.parents('ul')[0]).hasClass('list')) {
+                    $(this).parents(0).addClass('active')
                     var $not = $(e.target).hasClass('menu-toggle') ? e.target : $(e.target).parents('.menu-toggle');
     
                     $.each($('.menu-toggle.toggled').not($not).next(), function (i, val) {

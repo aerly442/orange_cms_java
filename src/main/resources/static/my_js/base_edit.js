@@ -23,7 +23,7 @@ $(function () {
     let aryRules    = m.getFormRule(userJson);//获取表单校验规则
     let aryMessages = m.getFormRuleMessage(userJson);//获取表单校验规则提示
 
-    m.set_edit_value_by_url("edit",modeFunction,headerJson);//根据URL的id=xx设置界面的值
+    m.set_edit_value_by_url("edit",modeFunction,editHeaderJson?editHeaderJson:headerJson);//根据URL的id=xx设置界面的值
 
     if (jqFunction){
         jqFunction();

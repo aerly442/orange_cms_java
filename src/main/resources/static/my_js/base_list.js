@@ -1,6 +1,6 @@
 $(function () {
 
-    let header = headerJson
+    let header = listHeaderJson?listHeaderJson:headerJson;
 
 
 

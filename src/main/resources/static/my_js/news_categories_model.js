@@ -25,6 +25,10 @@ var headerJson =  {
 
 }
 
+var listHeaderJson = headerJson ;
+var detailHeaderJson = headerJson ;
+var editHeaderJson = headerJson ;
+
 var fieldFunction = {    
 
 }

@@ -60,6 +60,8 @@ public class TokenFilter implements Filter {
         if (    url.contains("/hello/")
                 || url.equals("/manager/login")
                 || url.contains("/test/")
+                || url.contains("/umeditor/")
+                || url.contains("/fileUpload/uploadForEditor")
 
 
 

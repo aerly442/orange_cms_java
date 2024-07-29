@@ -16,10 +16,8 @@ public interface NewsDao extends BaseMapper<News> {
     //@Select("select * from user where id>#{id}")
     //List<User> getList(@Param("id") int id);
 
-    @Select("select n.id,title,c.name as news_categories_code,hot,visit,is_charge,price,sort,state,createtime\n" +
-            " from news_categories as n left join news_categories_code as where n.news_categories_code=c.code and  ${fieldName} like '%#{fieldValue}%' limit ${pageIndex},${pageSize} ")
-    List<News> getList( String fieldName,@Param("fieldValue") String fieldValue,
-      Integer pageIndex, Integer pageSize
-    );
+    @Select("select n.id,title,c.name as newsCategoriesCode,hot,visit,is_charge as isCharge,price,n.sort,state,n.createtime\n" +
+            " from news as n left join news_categories as c on n.news_categories_code=c.code  where  ${fieldName} like #{fieldValue} order by n.id desc limit ${pageIndex},${pageSize}  ")
+    List<News> getList(String fieldName,@Param("fieldValue") String fieldValue,Integer pageIndex,Integer pageSize);
 
 }

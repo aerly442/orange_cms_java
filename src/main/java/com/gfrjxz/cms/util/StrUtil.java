@@ -110,6 +110,32 @@ public class StrUtil {
         return convertSuccess;
     }
 
+    public static String GetFileExt(String fileName){
+        
+        String   ext = "png";
+
+        if (fileName!=null){
+            String[] aryRightExt = "JPG,PNG,PDF,CSV,Xls,Xlsx,Doc,Docx".split(",");
+            String[] aryFileInfo = fileName.split("\\.");
+           
+            if (aryFileInfo.length>0){
+                ext = aryFileInfo[aryFileInfo.length-1];
+            }
+
+            for (String f : aryRightExt) {
+
+                if (f.toLowerCase().equals(ext.toLowerCase())){
+                    return f.toLowerCase();
+                }
+                
+            }
+        }
+
+        return ext;
+        
+
+    }
+
     /*
     public  static  Boolean check_input(Object objValue,String ruler){
 

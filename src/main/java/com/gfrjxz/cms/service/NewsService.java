@@ -94,7 +94,8 @@ public List<News> search(Map<String, Object> map,Integer pageIndex,Integer pageS
          fieldValue = map.get(key).toString();
          break ;
      }
-     fieldName = fieldName.isEmpty()?"title":"";
+     fieldName  = fieldName.isEmpty()?"title":fieldName;
+     fieldValue = "%"+fieldValue+"%" ;
      return newsDao.getList(fieldName,fieldValue,pageIndex,pageSize) ;
      //QueryWrapper<News> wrapper = this.getSearchWrapper(map);
      //wrapper.leftJoin("news_categories","news.news_categories_code=news_categories.code");
@@ -117,6 +118,7 @@ public Integer getSearchCount(Map<String, Object> map) {
 
 public boolean add(News u){
 
+    u.setCreatetime(DateCommon.getNowToday());
     int result = newsDao.insert(u);
     return result >0;
 
@@ -128,25 +130,25 @@ public boolean update(News u) {
    UpdateWrapper<News> updateWrapper = new UpdateWrapper<News>();
    updateWrapper.eq("id", u.getId());
    updateWrapper.set("title", u.getTitle());
+   updateWrapper.set("abstract", u.getAbstract1());
    updateWrapper.set("content", u.getContent());
    updateWrapper.set("author", u.getAuthor());
    updateWrapper.set("source", u.getSource());
-   updateWrapper.set("newsCategoriesCode", u.getNewsCategoriesCode());
+   updateWrapper.set("news_categories_code", u.getNewsCategoriesCode());
    updateWrapper.set("mainpic", u.getMainpic());
    updateWrapper.set("file", u.getFile());
    updateWrapper.set("url", u.getUrl());
    updateWrapper.set("sort", u.getSort());
    updateWrapper.set("state", u.getState());
    updateWrapper.set("hot", u.getHot());
-   updateWrapper.set("keyWord", u.getKeyWord());
-   updateWrapper.set("abstract1", u.getAbstract1());
+   updateWrapper.set("key_word", u.getKeyWord());
+   updateWrapper.set("abstract", u.getAbstract1());
    updateWrapper.set("visit", u.getVisit());
-   updateWrapper.set("isCharge", u.getIsCharge());
-   updateWrapper.set("chargeStarttime", u.getChargeStarttime());
-   updateWrapper.set("chargeEndtime", u.getChargeEndtime());
+   updateWrapper.set("is_charge", u.getIsCharge());
+ 
    updateWrapper.set("price", u.getPrice());
-   updateWrapper.set("isComment", u.getIsComment());
-   updateWrapper.set("chargeType", u.getChargeType());
+   updateWrapper.set("is_comment", u.getIsComment());
+   updateWrapper.set("charge_type", u.getChargeType());
 
     int result = newsDao.update(null, updateWrapper);
     return result > 0;

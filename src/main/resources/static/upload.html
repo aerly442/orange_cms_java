@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>文件上传</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+
+
+<form id="fileUploadForm"   enctype="multipart/form-data" method="post" accept-charset="utf-8">
+<strong style='color:red'> </strong>
+<br>
+<input type="file" name="file" size="20" />
+(文件格式:JPG PNG PDF,CSV,Xls,Xlsx,Doc,Docx文件大小不超过8M)
+<br /><br />
+
+<button type="button" id="submitBtn">上传文件</button>  
+
+</form>
+    <!-- Jquery Core Js -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+ <script>
+
+$(document).ready(function() {  
+    function getToken()
+    {
+        if (sessionStorage.getItem("orange-token")) {
+            console.log("orange-token is save!!!!!!");
+            return sessionStorage.getItem("orange-token");
+        }
+        else {
+            return "000000";
+        }
+    }
+    $('#submitBtn').click(function(e) {  
+        e.preventDefault(); // 阻止表单的默认提交行为  
+  
+        var formData = new FormData($('#fileUploadForm')[0]); // 使用FormData对象包装表单数据  
+  
+        $.ajax({  
+            url: '/fileUpload/upload', // 你的服务器处理文件上传的URL  
+            type: 'POST',  
+            data: formData,  
+            processData: false, // 告诉jQuery不要处理发送的数据  
+            contentType: false, // 告诉jQuery不要设置Content-Type请求头  
+            beforeSend: function (request) {
+                request.setRequestHeader("orange-token", getToken());
+            },
+            success: function(data) {  
+
+                if (data.code =="0"){
+                    let fileName = data.data ;
+                    let aryInfo  = location.href.split('=');
+                    let ctrlId   = aryInfo[aryInfo.length-1];
+                    window.opener.document.getElementById(ctrlId).value = data.data ;
+                    window.close();
+
+                }
+                else{
+                    alert("文件上传出错!");
+                }
+                // 处理成功上传后的响应  
+                //console.log('文件上传成功:', response);  
+            },  
+            error: function(xhr, status, error) {  
+                // 处理上传失败  
+                //console.error('文件上传失败:', error);  
+                alert("文件上传出错!");
+            }  
+        });  
+    });  
+});
+
+ </script>
+</body>
+</html>

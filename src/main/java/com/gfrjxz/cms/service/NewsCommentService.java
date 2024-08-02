@@ -70,13 +70,14 @@ public List<NewsComment> getAll(){
    }
 private QueryWrapper<NewsComment> getSearchWrapper(Map<String, Object> map){
 
-    if (map==null || map.size() == 0){
-    return null;
-    }
-    QueryWrapper<NewsComment> wrapper = new QueryWrapper<NewsComment>();
-        for (String key : map.keySet()) {
-        wrapper.like(key, map.get(key));
-        }
+        QueryWrapper<NewsComment> wrapper = new QueryWrapper<NewsComment>();
+        if (map!=null &&  map.size() > 0){    
+
+            for (String key : map.keySet()) {
+                wrapper.like(key, map.get(key));
+            }
+
+        }       
         return wrapper;
 
 }
@@ -114,17 +115,17 @@ public boolean update(NewsComment u) {
 
           UpdateWrapper updateWrapper = new UpdateWrapper();
           updateWrapper.eq("id", u.getId());
-             updateWrapper.set("nickname", u.getNickname());
-   updateWrapper.set("content", u.getContent());
-   updateWrapper.set("createtime", u.getCreatetime());
-   updateWrapper.set("updatetime", u.getUpdatetime());
-   updateWrapper.set("state", u.getState());
-   updateWrapper.set("parentid", u.getParentid());
-   updateWrapper.set("userid", u.getUserid());
-   updateWrapper.set("likecount", u.getLikecount());
-   updateWrapper.set("hatecount", u.getHatecount());
-   updateWrapper.set("newsid", u.getNewsid());
-   updateWrapper.set("title", u.getTitle());
+          updateWrapper.set("nickname", u.getNickname());
+          updateWrapper.set("content", u.getContent());
+          updateWrapper.set("createtime", u.getCreatetime());
+          updateWrapper.set("updatetime", u.getUpdatetime());
+          updateWrapper.set("state", u.getState());
+          updateWrapper.set("parentid", u.getParentid());
+          updateWrapper.set("userid", u.getUserid());
+          updateWrapper.set("likecount", u.getLikecount());
+          updateWrapper.set("hatecount", u.getHatecount());
+          updateWrapper.set("newsid", u.getNewsid());
+          updateWrapper.set("title", u.getTitle());
 
           int result = newsCommentDao.update(null, updateWrapper);
           return result > 0;

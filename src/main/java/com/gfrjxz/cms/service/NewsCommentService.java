@@ -3,7 +3,7 @@ package com.gfrjxz.cms.service;
 import com.gfrjxz.cms.dao.*;
 
 import com.gfrjxz.cms.entity.*;
-
+import com.gfrjxz.cms.util.DateCommon;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.gfrjxz.cms.dao.NewsCommentDao;
 
@@ -27,12 +27,7 @@ public class NewsCommentService {
 @Autowired
 private NewsCommentDao newsCommentDao;
 
-public boolean addUser(NewsComment u){
-
-    boolean result = newsCommentDao.insert(u) > 0 ;
-    return result;
-
-}
+ 
 
 /**
 * @description 001 根据用户id获取一个用户实例
@@ -89,36 +84,38 @@ public List<NewsComment> search(Map<String, Object> map,Integer pageIndex,Intege
      Integer offset=(pageIndex - 1) * pageSize;
      QueryWrapper<NewsComment> wrapper = this.getSearchWrapper(map);
      wrapper.last("limit "+ offset+","+ pageSize);
+     wrapper.orderByDesc("id") ;
      return newsCommentDao.selectList(wrapper);
   }
 
 
 public Integer getSearchCount(Map<String, Object> map) {
 
-         QueryWrapper<NewsComment> wrapper = this.getSearchWrapper(map);
+    QueryWrapper<NewsComment> wrapper = this.getSearchWrapper(map);
 
-          Integer count = newsCommentDao.selectCount(wrapper);
+    Integer count = newsCommentDao.selectCount(wrapper);
 
-          return count;
+    return count;
 }
 
 
 
 public boolean add(NewsComment u){
 
-          int result = newsCommentDao.insert(u);
-          return result >0;
+    u.setCreatetime(DateCommon.getNowToday());
+    u.setUpdatetime(DateCommon.getNowToday());
+    int result = newsCommentDao.insert(u);
+    return result >0;
 
 }
 
 public boolean update(NewsComment u) {
 
-          UpdateWrapper updateWrapper = new UpdateWrapper();
+          UpdateWrapper<NewsComment> updateWrapper = new UpdateWrapper<NewsComment>();
           updateWrapper.eq("id", u.getId());
           updateWrapper.set("nickname", u.getNickname());
           updateWrapper.set("content", u.getContent());
-          updateWrapper.set("createtime", u.getCreatetime());
-          updateWrapper.set("updatetime", u.getUpdatetime());
+          updateWrapper.set("updatetime",DateCommon.getNowToday());
           updateWrapper.set("state", u.getState());
           updateWrapper.set("parentid", u.getParentid());
           updateWrapper.set("userid", u.getUserid());
@@ -130,13 +127,13 @@ public boolean update(NewsComment u) {
           int result = newsCommentDao.update(null, updateWrapper);
           return result > 0;
 
-          }
+}
 
 public boolean updateBy(NewsComment u,Map<String, Object> map) {
 
     QueryWrapper<NewsComment> wrapper = new QueryWrapper<NewsComment>();
     for (String key : map.keySet()) {
-    wrapper.eq(key, map.get(key));
+         wrapper.eq(key, map.get(key));
     }
     int result = newsCommentDao.update(u, wrapper);
     return result > 0;
@@ -150,11 +147,11 @@ public void delete(Integer id){
 
 public void deleteBy(Map<String, Object> map) {
 
-            QueryWrapper<NewsComment> wrapper = new QueryWrapper<NewsComment>();
-            for (String key : map.keySet()) {
-            wrapper.eq(key, map.get(key));
-            }
-            newsCommentDao.delete(wrapper);
-     }
+    QueryWrapper<NewsComment> wrapper = new QueryWrapper<NewsComment>();
+    for (String key : map.keySet()) {
+       wrapper.eq(key, map.get(key));
+    }
+    newsCommentDao.delete(wrapper);
+}
 
 }

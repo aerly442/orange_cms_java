@@ -87,6 +87,7 @@ public List<#$ClassName0#> search(Map<String, Object> map,Integer pageIndex,Inte
      Integer offset=(pageIndex - 1) * pageSize;
      QueryWrapper<#$ClassName0#> wrapper = this.getSearchWrapper(map);
      wrapper.last("limit "+ offset+","+ pageSize);
+     wrapper.orderByDesc("id") ;
      return #$ClassName#Dao.selectList(wrapper);
   }
 

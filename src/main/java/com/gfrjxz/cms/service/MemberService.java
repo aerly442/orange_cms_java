@@ -84,7 +84,7 @@ public class MemberService {
         Integer offset=(pageIndex - 1) * pageSize;
         QueryWrapper<Member> wrapper =  this.getSearchWrapper(map);
         wrapper.last("limit "+ offset+","+ pageSize);
-
+        wrapper.orderByDesc("id") ;
         return memberDao.selectList(wrapper);
     }
 

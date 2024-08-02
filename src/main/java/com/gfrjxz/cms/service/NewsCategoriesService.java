@@ -87,6 +87,7 @@ public List<NewsCategories> search(Map<String, Object> map,Integer pageIndex,Int
      Integer offset=(pageIndex - 1) * pageSize;
      QueryWrapper<NewsCategories> wrapper = this.getSearchWrapper(map);
      wrapper.last("limit "+ offset+","+ pageSize);
+     wrapper.orderByDesc("id") ;
      return newsCategoriesDao.selectList(wrapper);
   }
 

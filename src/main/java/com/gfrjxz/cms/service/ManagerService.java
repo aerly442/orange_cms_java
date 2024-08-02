@@ -91,6 +91,7 @@ public class ManagerService {
         }
 
         wrapper.last("limit "+ offset+","+ pageSize);
+        wrapper.orderByDesc("id") ;
         return managerDao.selectList(wrapper);
     }
 

@@ -88,6 +88,7 @@ public List<MenuRuler> search(Map<String, Object> map,Integer pageIndex,Integer 
      Integer offset=(pageIndex - 1) * pageSize;
      QueryWrapper<MenuRuler> wrapper = this.getSearchWrapper(map);
      wrapper.last("limit "+ offset+","+ pageSize);
+     wrapper.orderByDesc("id") ;
      return menuRulerDao.selectList(wrapper);
   }
 

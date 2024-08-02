@@ -85,6 +85,7 @@ public class MenuService {
         Integer offset = (pageIndex - 1) * pageSize;
         QueryWrapper<Menu> wrapper = this.getSearchWrapper(map);
         wrapper.last("limit " + offset + "," + pageSize);
+        wrapper.orderByDesc("id") ;
         return menuDao.selectList(wrapper);
     }
 

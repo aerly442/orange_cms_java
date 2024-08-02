@@ -87,6 +87,7 @@ public List<NewsTag> search(Map<String, Object> map,Integer pageIndex,Integer pa
      Integer offset=(pageIndex - 1) * pageSize;
      QueryWrapper<NewsTag> wrapper = this.getSearchWrapper(map);
      wrapper.last("limit "+ offset+","+ pageSize);
+     wrapper.orderByDesc("id") ;
      return newsTagDao.selectList(wrapper);
   }
 

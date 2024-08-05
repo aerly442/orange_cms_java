@@ -6,7 +6,7 @@ $(function () {
 
     let headerHtml = "";
     for (const key in header) {
-        headerHtml += "<th>" + header[key] + "</th>";
+        headerHtml += "<th id='tr"+key+"'>" + header[key] + "</th>";
     }
     $("#theadData").html(" <tr>" + headerHtml + "</tr>");
 

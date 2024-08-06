@@ -27,10 +27,13 @@ var headerJson =  {
 var listHeaderJson = {
 
     "id":"编号",
-    "newsid":"内容Id",
-    "newsresourceid":"资源Id",
+ 
+    "title":"标题",
+    "ctitle":"资源名称",
+    "resource":"资源内容",
+ 
     "createtime":"创建时间",
-    "updatetime":"更新时间",
+
     "action": "操作"
 
 } ;
@@ -38,6 +41,9 @@ var detailHeaderJson = headerJson ;
 var editHeaderJson = headerJson ;
 
 var fieldFunction = {    
+
+    "title":function(value,type,item){return  (type=="list")?(value+"("+item.newsid+")"):value},
+    "ctitle":function(value,type,item){return  (type=="list")?(value+"("+item.newsresourceid+")"):value},
 
 }
 //在base_edit的set_edit_value_by_url 里面回调

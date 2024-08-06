@@ -1,2 +1,2 @@
-//全局的变量
+//全局的变量hhhh
 const SITE_URL = "http://localhost:8088";

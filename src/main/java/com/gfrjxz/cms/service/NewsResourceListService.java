@@ -80,15 +80,21 @@ private QueryWrapper<NewsResourceList> getSearchWrapper(Map<String, Object> map)
 
 }
 
-public List<NewsResourceList> search(Map<String, Object> map,Integer pageIndex,Integer pageSize) {
+public List<NewsResourceListDTO> search(Map<String, Object> map,Integer pageIndex,Integer pageSize) {
 
      pageSize = pageSize > 0 ? pageSize : 20;
      pageIndex = pageIndex <= 1 ? 1 : pageIndex;
      Integer offset=(pageIndex - 1) * pageSize;
-     QueryWrapper<NewsResourceList> wrapper = this.getSearchWrapper(map);
-     wrapper.last("limit "+ offset+","+ pageSize);
-     wrapper.orderByDesc("id") ;
-     return newsResourceListDao.selectList(wrapper);
+     String fieldName  = "";
+     String fieldValue = "";
+     for (String key : map.keySet()) {
+         fieldName = key;
+         fieldValue = map.get(key).toString();
+         break ;
+     }
+     fieldName  = fieldName.isEmpty()?"b.title<>":fieldName+"=";
+     fieldValue = "" ;
+     return newsResourceListDao.getList(fieldName,fieldValue,pageIndex,pageSize) ;
   }
 
 

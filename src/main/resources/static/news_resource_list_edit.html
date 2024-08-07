@@ -123,27 +123,45 @@
                                                           
                                  
                                 <div class="row clearfix">
-<div class="col-lg-2 form-control-label">
-     <label id="lbnewsid" for="newsid"></label>
-</div>
-<div class="col-lg-4">
-   <div class="form-group">
-      <div class="form-line">
-         <input type="text" name="newsid" id="newsid" class="form-control" placeholder="请输入">
-      </div>
-   </div>
-</div>
-<div class="col-lg-2 form-control-label">
-     <label id="lbnewsresourceid" for="newsresourceid"></label>
-</div>
-<div class="col-lg-4">
-   <div class="form-group">
-      <div class="form-line">
-         <input type="text" name="newsresourceid" id="newsresourceid" class="form-control" placeholder="请输入">
-      </div>
-   </div>
-</div>
-</div>
+                                    <div class="col-lg-2 form-control-label">
+                                        <label id="lbnewsid" for="newsid"></label>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" readonly  data-rule="required,true" name="title" id="title" class="form-control" placeholder="请选择文章">
+                                                <input type="hidden"  data-rule="required,true" name="newsid" id="newsid" class="form-control" placeholder="请输入文章ID">
+                                            </div>
+                                        </div>
+                                  </div>
+                                  <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <div class="form-line1">
+                                           <a href="javascript:window.open('news_select.html')" class="btn btn-warning">选择文章</a>
+                                        </div>
+                                    </div>
+                                 </div>
+                            </div>
+                            <div class="row clearfix">
+                                    <div class="col-lg-2 form-control-label">
+                                        <label id="lbnewsresourceid" for="newsresourceid"></label>
+                                    </div>
+                                  <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text"  data-rule="required,true" name="title" id="ctitle" class="form-control" placeholder="请选择资源">
+                                            <input type="hidden"  data-rule="required,true" name="newsresourceid" id="newsresourceid" class="form-control" placeholder="请输入资源Id">
+                                        </div>
+                                    </div>
+                                   </div>
+                                   <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <div class="form-line1">
+                                           <a href="javascript:window.open('news_resource_select.html')" class="btn btn-warning">选择资源</a>
+                                        </div>
+                                    </div>
+                                 </div>
+                                </div>
                                 <div class="row clearfix">
                                     <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
                                         <button class="btn btn-primary m-t-15 waves-effect" type="submit">保存</button>

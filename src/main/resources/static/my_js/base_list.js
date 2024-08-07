@@ -12,6 +12,11 @@ $(function () {
 
     function getSearchParameter(){
 
+        //如果在model有重新获取查询json的则获取它的值
+        if (getSearchParameterFromModel){
+            return getSearchParameterFromModel();
+        }
+
         let fieldName  = $('.show-tick').val();
         let fieldValue = $('#txtKeyWord').val();
         let searchParameter = {};

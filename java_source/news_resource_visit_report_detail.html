@@ -93,13 +93,16 @@
             </div>
             <!-- #Footer -->
         </aside>
-     
+        <!-- #END# Left Sidebar -->
+   
     </section>
 
     <section class="content">
         <div class="container-fluid">
+             
+
             <div class="block-header">
-                <h2>管理</h2>
+                <h2>详情</h2>
             </div>
 
             <!-- Horizontal Layout -->
@@ -111,61 +114,49 @@
                                 <div class="col-md-10">
                                 </div>
                                 <div class="col-md-2 text-right">
-                                    <a href="news_resource_list_list.html" class="btn btn-success waves-effect btn-detail-edit">返回</a>
-
+                                    <a href="news_resource_visit_report_list.html" class="btn btn-success waves-effect ">返回</a>
 
                                 </div>
                             </div>
 
                         </div>
                         <div class="body">
-                            <form class="form-horizontal" method="post" id="frmNewsResourceList">
-                                                          
-                                 
+                            <form class="form-horizontal" method="post" id="frmNewsResourceVisitReport">
                                 <div class="row clearfix">
-                                    <div class="col-lg-2 form-control-label">
-                                        <label id="lbnewsid" for="newsid"></label>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="text" readonly  data-rule="required,true" name="title" id="title" class="form-control" placeholder="请选择文章">
-                                                <input type="hidden"  data-rule="required,true" name="newsid" id="newsid" class="form-control" placeholder="请输入文章ID">
-                                            </div>
-                                        </div>
-                                  </div>
-                                  <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <div class="form-line1">
-                                           <a href="javascript:window.open('news_select.html')" class="btn btn-warning">选择文章</a>
-                                        </div>
-                                    </div>
-                                 </div>
-                            </div>
-                            <div class="row clearfix">
-                                    <div class="col-lg-2 form-control-label">
-                                        <label id="lbnewsresourceid" for="newsresourceid"></label>
-                                    </div>
-                                  <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text"  data-rule="required,true" name="title" id="ctitle" class="form-control" placeholder="请选择资源">
-                                            <input type="hidden"  data-rule="required,true" name="newsresourceid" id="newsresourceid" class="form-control" placeholder="请输入资源Id">
-                                        </div>
-                                    </div>
-                                   </div>
-                                   <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <div class="form-line1">
-                                           <a href="javascript:window.open('news_resource_select.html')" class="btn btn-warning">选择资源</a>
-                                        </div>
-                                    </div>
-                                 </div>
-                                </div>
+<div class="col-lg-2 form-control-label">
+     <label id="lbtitle" for="title"></label>
+</div>
+<div class="col-lg-4">
+   <div class="form-group">
+      <div class="form-line">
+         <input type="text" name="title" id="title" class="form-control" placeholder="请输入">
+      </div>
+   </div>
+</div>
+<div class="col-lg-2 form-control-label">
+     <label id="lbreporttime" for="reporttime"></label>
+</div>
+<div class="col-lg-4">
+   <div class="form-group">
+      <div class="form-line">
+         <input type="text" name="reporttime" id="reporttime" class="form-control" placeholder="请输入">
+      </div>
+   </div>
+</div>
+<div class="col-lg-2 form-control-label">
+     <label id="lbclickPv" for="clickPv"></label>
+</div>
+<div class="col-lg-4">
+   <div class="form-group">
+      <div class="form-line">
+         <input type="text" name="clickPv" id="clickPv" class="form-control" placeholder="请输入">
+      </div>
+   </div>
+</div>
+</div>  
                                 <div class="row clearfix">
-                                    <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-                                        <button class="btn btn-primary m-t-15 waves-effect" type="submit">保存</button>
-                                        <input type="hidden"  name="id" id="id" value="0">
+                                    <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5 ">
+                                        <a  class="btn btn-primary waves-effect btn-detail-edit">编辑</a>
                                     </div>
                                 </div>
                             </form>
@@ -173,6 +164,7 @@
                     </div>
                 </div>
             </div>
+ 
 
 
         </div>
@@ -202,8 +194,8 @@
 
     <script src="my_js/site.js"></script>
     <script src="my_js/baseModel.js"></script>
-    <script src="my_js/news_resource_list_model.js"></script>
-    <script src="my_js/base_edit.js"></script>
+    <script src="my_js/news_resource_visit_report_model.js"></script>
+    <script src="my_js/base_detail.js"></script>
     <script src="my_js/left_menu_model.js"></script>
 
      

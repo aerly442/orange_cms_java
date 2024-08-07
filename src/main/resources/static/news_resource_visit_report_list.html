@@ -33,6 +33,7 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="css/themes/all-themes.css" rel="stylesheet" />
+ 
 
 </head>
 
@@ -93,16 +94,19 @@
             </div>
             <!-- #Footer -->
         </aside>
-     
+        <!-- #END# Left Sidebar -->
+ 
     </section>
 
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h2>管理</h2>
-            </div>
+                <h2>
+                    列表
 
-            <!-- Horizontal Layout -->
+                </h2>
+            </div>
+            <!-- Basic Examples -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -111,69 +115,107 @@
                                 <div class="col-md-10">
                                 </div>
                                 <div class="col-md-2 text-right">
-                                    <a href="news_resource_list_list.html" class="btn btn-success waves-effect btn-detail-edit">返回</a>
-
+                                   
 
                                 </div>
                             </div>
 
                         </div>
                         <div class="body">
-                            <form class="form-horizontal" method="post" id="frmNewsResourceList">
-                                                          
-                                 
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 form-control-label">
-                                        <label id="lbnewsid" for="newsid"></label>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="text" readonly  data-rule="required,true" name="title" id="title" class="form-control" placeholder="请选择文章">
-                                                <input type="hidden"  data-rule="required,true" name="newsid" id="newsid" class="form-control" placeholder="请输入文章ID">
+                            <div class="row" style="margin-bottom:10px;margin-bottom:10px;margin-left:5px">
+                                <div class="table-footer">
+                                    <div class="row clearfix">
+                                        <div class="col-md-2">
+                                            <div class="table-actions" style="line-height:32px">
+                                                <label>请输入</label>
+
                                             </div>
                                         </div>
-                                  </div>
-                                  <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <div class="form-line1">
-                                           <a href="javascript:window.open('news_select.html')" class="btn btn-warning">选择文章</a>
+                                        <div class="col-md-2">
+
+                                            <select class="form-control show-tick">
+                                            
+                                                <option value="title">标题</option>
+
+                                            </select>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input name="title" id="title" value="" type="text" id="txtKeyWord"
+                                                class="form-control">
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="button" name="btnSearch" value="搜索" id="btnSearch"
+                                                class="btn btn-primary waves-effect">
+                                            <input type="hidden" value="search" name="action">
                                         </div>
                                     </div>
-                                 </div>
+                                    <div class="row clearfix">
+                                        <div class="col-md-2">
+                                            <div class="table-actions" style="line-height:32px">
+                                                <label>时间从</label>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input name="starttime" id="starttime" value="" type="text" id="txtKeyWord"
+                                                class="form-control">
+
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="table-actions" style="line-height:32px">
+                                                <label>到</label>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input name="endtime" id="endtime" value="" type="text" id="txtKeyWord"
+                                                class="form-control">
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
                             </div>
-                            <div class="row clearfix">
-                                    <div class="col-lg-2 form-control-label">
-                                        <label id="lbnewsresourceid" for="newsresourceid"></label>
-                                    </div>
-                                  <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text"  data-rule="required,true" name="title" id="ctitle" class="form-control" placeholder="请选择资源">
-                                            <input type="hidden"  data-rule="required,true" name="newsresourceid" id="newsresourceid" class="form-control" placeholder="请输入资源Id">
-                                        </div>
-                                    </div>
-                                   </div>
-                                   <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <div class="form-line1">
-                                           <a href="javascript:window.open('news_resource_select.html')" class="btn btn-warning">选择资源</a>
-                                        </div>
-                                    </div>
-                                 </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-                                        <button class="btn btn-primary m-t-15 waves-effect" type="submit">保存</button>
-                                        <input type="hidden"  name="id" id="id" value="0">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover ">
+                                    <thead id="theadData">
+                                        
+                                    </thead>
+
+                                    <tbody id="tbodyData">
+                                         
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <div class="dataTables_info pagination" role="status" aria-live="polite">共有: <b
+                                            id="totalCount"> 0 </b> 条数据
                                     </div>
                                 </div>
-                            </form>
+                                <div class="col-sm-7">
+                                    <div class="dataTables_paginate paging_simple_numbers"
+                                        id="DataTables_Table_0_paginate">
+                                        <ul class="pagination"  id="ulPage">
+                                            
+                                           
+                                             
+                                            
+                                           
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <!-- #END# Basic Examples -->
 
         </div>
     </section>
@@ -184,7 +226,7 @@
     <!-- Bootstrap Core Js -->
     <script src="plugins/bootstrap/js/bootstrap.js"></script>
 
- 
+
 
     <!-- Slimscroll Plugin Js -->
     <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
@@ -196,17 +238,25 @@
     <script src="js/pages/ui/dialogs.js"></script>
     <!-- Validation Plugin Js -->
     <script src="plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="http://gfrjxz.com/manager/plugins/daterangepicker/daterangepicker.js"></script>
 
     <!-- Custom Js -->
     <script src="js/admin.js"></script>
 
     <script src="my_js/site.js"></script>
     <script src="my_js/baseModel.js"></script>
-    <script src="my_js/news_resource_list_model.js"></script>
-    <script src="my_js/base_edit.js"></script>
+    <script src="my_js/news_resource_visit_report_model.js"></script>
+    <script src="my_js/base_list.js"></script>
     <script src="my_js/left_menu_model.js"></script>
+    <script>
+        $(document).ready(function(){
+            
+          $("#starttime").datepicker({ dateFormat: "yy-mm-dd" });
+          $("#endtime").datepicker({ dateFormat: "yy-mm-dd" });
 
-     
+        });
+    </script>
+
 </body>
 
 </html>

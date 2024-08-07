@@ -13,7 +13,7 @@ $(function () {
     function getSearchParameter(){
 
         //如果在model有重新获取查询json的则获取它的值
-        if (getSearchParameterFromModel){
+        if (typeof getSearchParameterFromModel === 'function' ){
             return getSearchParameterFromModel();
         }
 

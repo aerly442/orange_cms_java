@@ -42,8 +42,8 @@ var editHeaderJson = headerJson ;
 
 var fieldFunction = {    
 
-    "title":function(value,type,item){return  (type=="list")?(value+"("+item.newsid+")"):value},
-    "ctitle":function(value,type,item){return  (type=="list")?(value+"("+item.newsresourceid+")"):value},
+    "title":function(value,type,item){return  (type!="")?(value+"("+item.newsid+")"):value},
+    "ctitle":function(value,type,item){return  (type!="")?(value+"("+item.newsresourceid+")"):value},
 
 }
 //在base_edit的set_edit_value_by_url 里面回调

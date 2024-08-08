@@ -36,11 +36,12 @@ private NewsResourceListDao newsResourceListDao;
 * @date
 * @return
 */
-public NewsResourceList getSinger(Integer id){
+public NewsResourceListDTO getSinger(Integer id){
 
-    QueryWrapper<NewsResourceList> wrapper = new QueryWrapper<NewsResourceList>();
-    wrapper.eq("id", id);
-    NewsResourceList u = newsResourceListDao.selectOne(wrapper);
+    //QueryWrapper<NewsResourceList> wrapper = new QueryWrapper<NewsResourceList>();
+   // wrapper.eq("id", id);
+    //NewsResourceList u = newsResourceListDao.selectOne(wrapper);
+    NewsResourceListDTO  u = newsResourceListDao.getSinger(id);
     return u;
 
  }

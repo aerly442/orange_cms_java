@@ -27,7 +27,7 @@ function BaseModel(tableName) {
 
                          let value = u[key];
                          if ($("#"+key)){
-                             value = getFieldValue(key,value) ;
+                             value = getFieldValue(key,value,"edit",u) ;
                              $("#"+key).val(value);
                              if (type && type=="detail"){
                                 $("#"+key).attr("disabled",true);

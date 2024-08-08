@@ -32,7 +32,7 @@ var headerJson =  {
     "id":"编号",
     "title":"资源名称",
     "resource":"资源内容", 
-    "seed":"种子Id",
+    "seed":"唯一标识",
     "violationCnt":"违规",
     "clickPv":"浏览",
     "savePv":"保存",  

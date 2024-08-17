@@ -104,6 +104,29 @@ public List<News> search(Map<String, Object> map,Integer pageIndex,Integer pageS
      //return newsDao.selectList(wrapper);
   }
 
+  
+public List<News> searchForFront(Map<String, Object> map,Integer pageIndex,Integer pageSize) {
+
+     pageSize = pageSize > 0 ? pageSize : 20;
+     pageIndex = pageIndex <= 1 ? 1 : pageIndex;
+     Integer offset=(pageIndex - 1) * pageSize;
+     String fieldName  = "";
+     String fieldValue = "";
+     for (String key : map.keySet()) {
+         fieldName = key;
+         fieldValue = map.get(key).toString();
+         break ;
+     }
+     fieldName  = fieldName.isEmpty()?"title":fieldName;
+     fieldValue = "%"+fieldValue+"%" ;
+     return newsDao.getListForFront(fieldName,fieldValue,pageIndex,pageSize) ;
+     //QueryWrapper<News> wrapper = this.getSearchWrapper(map);
+     //wrapper.leftJoin("news_categories","news.news_categories_code=news_categories.code");
+     //wrapper.select("news.id,title,news_categories.name as news_categories_code,hot,visit,is_charge,price,sort,state,createtime");
+     //wrapper.last("limit "+ offset+","+ pageSize);
+     //return newsDao.selectList(wrapper);
+  }
+
 
 public Integer getSearchCount(Map<String, Object> map) {
 

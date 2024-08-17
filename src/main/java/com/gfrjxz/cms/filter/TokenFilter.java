@@ -62,6 +62,7 @@ public class TokenFilter implements Filter {
                 || url.contains("/test/")
                 || url.contains("/umeditor/")
                 || url.contains("/fileUpload/uploadForEditor")
+                || url.contains("/article/")
 
 
 

@@ -91,6 +91,11 @@ public List<NewsTag> search(Map<String, Object> map,Integer pageIndex,Integer pa
      return newsTagDao.selectList(wrapper);
   }
 
+ public List<NewsTag> getList() {
+
+     return newsTagDao.getList();
+  }  
+
 
 public Integer getSearchCount(Map<String, Object> map) {
 

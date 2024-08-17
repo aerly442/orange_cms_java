@@ -3,6 +3,7 @@ package com.gfrjxz.cms.entity;
 import java.util.Date;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
+import com.baomidou.mybatisplus.annotation.TableField;
 
 
 
@@ -38,6 +39,7 @@ public void setEmail(String email) {
 }
 //@NotEmpty(message = "")
 /* */
+@TableField(value = "user_code")
 private String userCode;
 public String getUserCode() {
     return userCode;
@@ -74,6 +76,7 @@ public void setUpdatetime(String updatetime) {
 }
 //@NotEmpty(message = "")
 /* */
+@TableField(value = "pay_state")
 private int payState;
 public int getPayState() {
     return payState;
@@ -83,6 +86,7 @@ public void setPayState(int payState) {
 }
 //@NotEmpty(message = "")
 /* */
+@TableField(value = "pay_price")
 private int payPrice;
 public int getPayPrice() {
     return payPrice;
@@ -92,6 +96,7 @@ public void setPayPrice(int payPrice) {
 }
 //@NotEmpty(message = "")
 /* */
+@TableField(value = "pay_time")
 private String payTime;
 public String getPayTime() {
     return payTime;
@@ -101,6 +106,7 @@ public void setPayTime(String payTime) {
 }
 //@NotEmpty(message = "")
 /* */
+@TableField(value = "trade_no")
 private String tradeNo;
 public String getTradeNo() {
     return tradeNo;

@@ -34,12 +34,13 @@ var editHeaderJson = headerJson ;
 
 var fieldFunction = {    
 
+
 }
 //在base_edit的set_edit_value_by_url 里面回调
 //设置界面的时候回调用
 var modeFunction = function(type){
     
-
+    
 
 }
 //在base_edit的set_edit_value_by_url 后面执行

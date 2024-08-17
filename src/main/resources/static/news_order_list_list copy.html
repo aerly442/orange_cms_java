@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Welcome To | Bootstrap Based Admin Template - Material Design</title>
+    <!-- Favicon-->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet"
+        type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Morris Chart Css-->
+    <link href="plugins/morrisjs/morris.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Sweetalert Css -->
+    <link href="plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="css/themes/all-themes.css" rel="stylesheet" />
+ 
+
+</head>
+
+<body class="theme-teal">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="main.html">橙子CMS</a>
+            </div>
+
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info" style="display:none">
+                <div class="image">
+                    <img src="images/user.png" width="48" height="48" alt="User" />
+                </div>
+                <div class="info-container">
+
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <script src="my_js/left_menu.js"></script>
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+ 
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                    列表
+
+                </h2>
+            </div>
+            <!-- Basic Examples -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <div class="row">
+                                <div class="col-md-10">
+                                </div>
+                                <div class="col-md-2 text-right">
+                                    <a href="news_order_list_edit.html" class="btn btn-warning waves-effect">新增</a>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="body">
+                            <div class="row" style="margin-bottom:10px;">
+                                <div class="table-footer">
+
+                                    <div class="col-md-2">
+                                        <div class="table-actions" style="line-height:32px">
+                                            <label>请输入:</label>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+
+                                        <select class="form-control show-tick">
+                                            <option value="">--请选择 --</option>
+                                            
+                                            <option value="email">Email</option>
+                                            
+                                            <option value="trade_no">订单号</option>
+                                            
+
+
+                                        </select>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input name="txtKeyWord" value="" type="text" id="txtKeyWord"
+                                            class="form-control">
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="button" name="btnSearch" value="搜索" id="btnSearch"
+                                            class="btn btn-primary waves-effect">
+                                        <input type="hidden" value="search" name="action">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover ">
+                                    <thead id="theadData">
+                                        
+                                    </thead>
+
+                                    <tbody id="tbodyData">
+                                         
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <div class="dataTables_info pagination" role="status" aria-live="polite">共有: <b
+                                            id="totalCount"> 0 </b> 条数据
+                                    </div>
+                                </div>
+                                <div class="col-sm-7">
+                                    <div class="dataTables_paginate paging_simple_numbers"
+                                        id="DataTables_Table_0_paginate">
+                                        <ul class="pagination"  id="ulPage">
+                                            
+                                           
+                                             
+                                            
+                                           
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Basic Examples -->
+
+        </div>
+    </section>
+
+    <!-- Jquery Core Js -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="plugins/bootstrap/js/bootstrap.js"></script>
+
+
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="plugins/node-waves/waves.js"></script>
+    <script src="plugins/sweetalert/sweetalert.min.js"></script>
+
+    <script src="js/pages/ui/dialogs.js"></script>
+    <!-- Validation Plugin Js -->
+    <script src="plugins/jquery-validation/jquery.validate.js"></script>
+
+    <!-- Custom Js -->
+    <script src="js/admin.js"></script>
+
+    <script src="my_js/site.js"></script>
+    <script src="my_js/baseModel.js"></script>
+    <script src="my_js/news_order_list_model.js"></script>
+    <script src="my_js/base_list.js"></script>
+    <script src="my_js/left_menu_model.js"></script>
+<style>
+    #truserCode{
+        width: 300px;
+        word-break: break-all;
+    }
+
+</style>
+
+</body>
+
+</html>

@@ -49,23 +49,13 @@ var headerJson =  {
 var listHeaderJson = {
 
     "id":"编号",
-
+    "tradeNo":"订单号",
     "newsid":"文章ID",
     "email":"Email",
-    "userCode":"用户代码",
-    "note":"备注",
-   
-   
     "payState":"支付状态",
     "payPrice":"金额",
-    "payTime":"时间",
-    "tradeNo":"订单号",
-    "orderId":"订单Id",
-    "payUrl":"支付地址",
-    "userid":"用户Id",
-   
+    "payTime":"时间", 
     "createtime":"创建时间",
-    "updatetime":"更新时间",
     "action": "操作"
 
 

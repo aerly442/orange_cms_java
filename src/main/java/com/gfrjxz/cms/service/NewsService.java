@@ -127,6 +127,14 @@ public List<News> searchForFront(Map<String, Object> map,Integer pageIndex,Integ
      //return newsDao.selectList(wrapper);
   }
 
+  public List<News> getHotList() {
+
+    String toDay = DateCommon.getToday();
+    String createtime = DateCommon.AddSeconds(toDay, (long)(-60*60*24*7));  
+    return newsDao.getHotListForFront(createtime);
+
+ }
+
 
 public Integer getSearchCount(Map<String, Object> map) {
 
@@ -192,6 +200,12 @@ public boolean updateBy(News u,Map<String, Object> map) {
 public void delete(Integer id){
 
     newsDao.deleteById(id);
+}
+
+public void updateVisit(int id){
+   
+    newsDao.updateVisit(id);
+    
 }
 
 public void deleteBy(Map<String, Object> map) {

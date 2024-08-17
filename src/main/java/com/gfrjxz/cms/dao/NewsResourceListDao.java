@@ -27,4 +27,9 @@ public interface NewsResourceListDao extends BaseMapper<NewsResourceList> {
             " where a.newsid=b.id and a.newsresourceid=c.id and  a.id=#{id}  ")
    NewsResourceListDTO getSinger(@Param("id") Integer id);
 
+   @Select("select a.*,b.title,c.title as ctitle,c.resource \n" +
+   " from news_resource_list  as a,news as b,news_resource as c \n" +
+   " where a.newsid=b.id and a.newsresourceid=c.id and  a.newsid=#{id} limit 1 ")
+NewsResourceListDTO getSingerByNewsId(@Param("id") Integer id);
+
 }

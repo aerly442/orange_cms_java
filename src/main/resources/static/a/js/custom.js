@@ -105,13 +105,13 @@ $(document).ready(function () {
             <figure class="thumbnail thumbnail-hiden">
                 <span class="sort hidden-xs"><a href="/a/detail.html?id=${item.id}.html"
                         rel="category">文章</a></span>
-                <a href="/a/detail.html?id=${item.id}.html" rel="bookmark" class="home-thumbnail hidden-xs"
+                <a href="/a/detail.html?id=${item.id}" rel="bookmark" class="home-thumbnail hidden-xs"
                     target="_blank">
                     <img width="210"   src="${item.mainpic}"
                         alt="${item.title}" /></a>
             </figure>
             <div class="entry-content">
-                <h2 class="entry-title"><a href="/a/detail.html?id=${item.id}.html"
+                <h2 class="entry-title"><a href="/a/detail.html?id=${item.id}"
                         rel="bookmark" target="_blank">${item.title}</a></h2>
                 <div class="entry-site">${item.abstract1}</div>
                 <div class="entry-meta">
@@ -164,7 +164,7 @@ $(document).ready(function () {
                    
                     for(let i=0;i<aryData.length;i++){
                         let item = aryData[i] ;
-                        let temp = `<a href="/a/?tag=${item.name}" rel="tag" style='font-size: 14px;'>${item.name}</a> `;
+                        let temp = `<a href="/a/?tag=${item.tag}" rel="tag" style='font-size: 14px;'>${item.tag}</a> `;
                         html += temp;
                     }
                     
@@ -178,11 +178,96 @@ $(document).ready(function () {
 
     }
 
+
+
+function get_hot_list(){
+
+    $.ajax({
+        type: "GET",
+        url: "/article/get_hot_list", //
+        success: function (data) { //
+            if (data != '-1') {
+                let aryData = data.data ;
+                let html = '';
+               
+                for(let i=0;i<aryData.length;i++){
+                    let item = aryData[i] ;
+                    let temp = `    <li><a target="_blank" href="/a/detail.html?id=${item.id}">${item.title}</a></li>`;
+                    html += temp;
+                }
+                
+                $('#day-list').append(html);
+               
+            } else {
+                
+            }
+        }
+    });
+
+}
+
+function get_detail(){
+
+    let aryData = location.href.split('=');
+    let id      = aryData[aryData.length-1]
+
+    $.ajax({
+        type: "GET",
+        url: "/article/get_detail?id="+id, //
+        success: function (data) { //
+            if (data != '-1') {
+                let item = data.data ;
+                 
+                $('.article-title').html(item.title) ;
+                $('.article-createtime').html("<i></i>"+item.createtime.substring(0,10)) ;
+                $('.article-abstract').html(item.abstract1) ;
+                $('.article-content').append(item.content) ;
+                $('.article-author').html("作者："+item.author) ;
+                $('.article-source').html("来源："+item.source) ;
+                $('.article-visit').html("浏览量："+item.visit) ;
+                //article-download
+               
+            } else {
+                
+            }
+        }
+    });
+
+    $.ajax({
+        type: "GET",
+        url: "/article/get_detail_download?id="+id, //
+        success: function (data) { //
+            if (data != '-1') {
+                let item = data.data ;
+                $('.article-download').html(item.resource) ;
+               
+            } else {
+                
+            }
+        }
+    });
+
+    $.ajax({
+        type: "GET",
+        url: "/article/update_visit?id="+id, //
+        success: function (data) { //
+            
+        }
+    });
+
+}
+
+
     if (pageName && pageName ==="index"){
        get_news_list(1,"");
        get_tag_list();
+       get_hot_list()
     }
-
+    if (pageName && pageName ==="detail"){
+        get_detail();
+        get_tag_list();
+        get_hot_list()
+     }
 
 
 });

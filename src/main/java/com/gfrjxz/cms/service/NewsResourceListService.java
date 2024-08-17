@@ -46,6 +46,18 @@ public NewsResourceListDTO getSinger(Integer id){
 
  }
 
+ public NewsResourceListDTO getSingerByNewsId(Integer id){
+
+    //QueryWrapper<NewsResourceList> wrapper = new QueryWrapper<NewsResourceList>();
+   // wrapper.eq("id", id);
+    //NewsResourceList u = newsResourceListDao.selectOne(wrapper);
+    NewsResourceListDTO  u = newsResourceListDao.getSingerByNewsId(id);
+    return u;
+
+ }
+
+
+
 public NewsResourceList getSingerBy(Map<String,Object> map){
 
     QueryWrapper<NewsResourceList> wrapper = new QueryWrapper<NewsResourceList>();

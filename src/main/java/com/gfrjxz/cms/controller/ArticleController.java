@@ -1,11 +1,9 @@
 package com.gfrjxz.cms.controller;
 
 import com.gfrjxz.cms.entity.*;
- 
- 
+import com.gfrjxz.cms.service.NewsResourceListService;
 import com.gfrjxz.cms.service.NewsService;
- 
-import com.gfrjxz.cms.util.RessponseMessge;
+import com.gfrjxz.cms.service.NewsTagService;
 
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
@@ -27,8 +25,11 @@ public class ArticleController {
     @Autowired
     private NewsService newsService;
 
-     @Autowired
+    @Autowired
     private NewsTagService newsTagService;
+
+    @Autowired
+    private NewsResourceListService newsResourceListService;
 
     //private static final Logger logger = LoggerFactory.getLogger(NewsService.class);
 
@@ -77,12 +78,55 @@ public class ArticleController {
      }
 
     @RequestMapping(value = "/get_tag_list", method = RequestMethod.GET)
-    public Object get_tag_list(
+    public Object getTagList(
              
      ){
         
         Object o = newsTagService.getList();
         return RessponseMessge.OK(o, String.valueOf(0));
      }
+
+     @RequestMapping(value = "/get_hot_list", method = RequestMethod.GET)
+     public Object getHotList(
+              
+      ){
+         
+         Object o = newsService.getHotList();
+         return RessponseMessge.OK(o, String.valueOf(0));
+      }
+
+      @RequestMapping(value = "/get_detail", method = RequestMethod.GET)
+      public Object getDetail(
+        @RequestParam(name="id",required=false,defaultValue="0")    Integer id
+       ){
+          
+            News news = newsService.getSinger(id);
+            if (news.getState() == 1){
+                return RessponseMessge.OK(news, "成功");
+            }
+            else{
+                return RessponseMessge.Error(null,"获取数据错误"); 
+            }
+       }
+
+       @RequestMapping(value = "/get_detail_download", method = RequestMethod.GET)
+       public Object getDetailDownload(
+         @RequestParam(name="id",required=false,defaultValue="0")    Integer id
+        ){
+           
+            NewsResourceListDTO news = newsResourceListService.getSingerByNewsId(id);
+            return RessponseMessge.OK(news, "成功");
+   
+        }
+
+        @RequestMapping(value = "/update_visit", method = RequestMethod.GET)
+        public Object updateVisit(
+          @RequestParam(name="id",required=false,defaultValue="0")    Integer id
+         ){
+            
+            newsService.updateVisit(id) ;
+            return RessponseMessge.OK("1", "成功");
+    
+         }
  
 }

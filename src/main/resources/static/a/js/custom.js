@@ -128,7 +128,7 @@ $(document).ready(function () {
 
     }
 
-    function get_news_list(pageIndex,cid){
+    function get_news_list(pageIndex,cid,ctitle){
 
         $.ajax({
             type: "GET",
@@ -263,6 +263,13 @@ function get_detail(){
        get_tag_list();
        get_hot_list()
     }
+    if (pageName && pageName ==="list"){
+        let aryData = location.href.split('=');
+        let cid      = aryData[aryData.length-1]
+        get_news_list(1,cid);
+        get_tag_list();
+        get_hot_list()
+     }
     if (pageName && pageName ==="detail"){
         get_detail();
         get_tag_list();

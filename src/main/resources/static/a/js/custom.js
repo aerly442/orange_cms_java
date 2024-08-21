@@ -132,9 +132,9 @@ $(document).ready(function () {
 
         $.ajax({
             type: "GET",
-            url: "/article/get_news_list?pageIndex=" + pageIndex + "&cid="+cid, //
+            url: "/article/get_news_list?pageIndex=" + pageIndex + "&cid="+cid+"&ctitle="+ctitle, //
             success: function (data) { //
-                if (data != '-1') {
+                if (data.code!= '1') {
                     let aryData = data.data ;
                     let html = '';
                     for(let i=0;i<aryData.length;i++){
@@ -158,7 +158,7 @@ $(document).ready(function () {
             type: "GET",
             url: "/article/get_tag_list", //
             success: function (data) { //
-                if (data != '-1') {
+                if (data.code!= '1') {
                     let aryData = data.data ;
                     let html = '';
                    
@@ -186,7 +186,7 @@ function get_hot_list(){
         type: "GET",
         url: "/article/get_hot_list", //
         success: function (data) { //
-            if (data != '-1') {
+            if (data.code!= '1') {
                 let aryData = data.data ;
                 let html = '';
                
@@ -215,7 +215,7 @@ function get_detail(){
         type: "GET",
         url: "/article/get_detail?id="+id, //
         success: function (data) { //
-            if (data != '-1') {
+            if (data.code!= '1') {
                 let item = data.data ;
                  
                 $('.article-title').html(item.title) ;
@@ -237,7 +237,7 @@ function get_detail(){
         type: "GET",
         url: "/article/get_detail_download?id="+id, //
         success: function (data) { //
-            if (data != '-1') {
+            if (data.code!= '1') {
                 let item = data.data ;
                 $('.article-download').html(item.resource) ;
                
@@ -256,24 +256,30 @@ function get_detail(){
     });
 
 }
-
+    get_tag_list();
+    get_hot_list()
 
     if (pageName && pageName ==="index"){
+
+ 
+
        get_news_list(1,"");
-       get_tag_list();
-       get_hot_list()
     }
     if (pageName && pageName ==="list"){
+
         let aryData = location.href.split('=');
-        let cid      = aryData[aryData.length-1]
-        get_news_list(1,cid);
-        get_tag_list();
-        get_hot_list()
+        let cValue  = aryData[aryData.length-1] ;
+        let cid     = location.href.indexOf("cid")>0?cValue:"";
+        let ctitle  = location.href.indexOf("ctitle")>0?cValue:"";
+
+ 
+
+        get_news_list(1,cid,ctitle);
+
      }
     if (pageName && pageName ==="detail"){
         get_detail();
-        get_tag_list();
-        get_hot_list()
+
      }
 
 

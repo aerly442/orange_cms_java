@@ -73,7 +73,7 @@ public class ArticleController {
         //mapWhere.put("",news.getId());
    
         Object o = newsService.searchForFront(mapWhere,pageIndex,pageSize);
-        int totalCount = newsService.getSearchCount(mapWhere);
+        int totalCount = newsService.getListForFrontCount(mapWhere);
         return RessponseMessge.OK(o, String.valueOf(totalCount));
      }
 

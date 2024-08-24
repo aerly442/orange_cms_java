@@ -110,6 +110,31 @@ public class StrUtil {
         return convertSuccess;
     }
 
+
+    public static String getClearString(String str){
+
+           if (isNullOrEmpty(str)){
+               return "";
+           }
+
+           str = str.replace("'","");
+           str = str.replace("!","");
+           str = str.replace("--","");
+           str = str.replace("<","");
+           str = str.replace(">","");
+           str = str.replace("&","");
+           str = str.replace("?","");
+           str = str.replace("*","");
+           str = str.replace("#","");
+           if (str.length()>50){
+               str = str.substring(0,50);
+           }
+
+           return str;
+
+
+    }
+
     public static String GetFileExt(String fileName){
         
         String   ext = "png";

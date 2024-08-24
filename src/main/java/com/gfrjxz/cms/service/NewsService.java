@@ -104,8 +104,21 @@ public List<News> search(Map<String, Object> map,Integer pageIndex,Integer pageS
      //return newsDao.selectList(wrapper);
   }
 
+private String getWhereSql(String tag){
+
+   if (tag!=null && !tag.isEmpty()){
+ 
+      //tag = StrUtil.re
+      return  " and EXISTS (select 1 from news_tag where n.id=news_tag.newsid and tag like '%"+tag+"%')";
   
-public List<News> searchForFront(Map<String, Object> map,Integer pageIndex,Integer pageSize) {
+   }
+   else{
+
+       return "";
+   }
+
+}  
+public List<News> searchForFront(Map<String, Object> map,Integer pageIndex,Integer pageSize,String tag) {
 
      pageSize          = pageSize > 0 ? pageSize : 20;
      pageIndex         = pageIndex <= 1 ? 1 : pageIndex;
@@ -119,11 +132,11 @@ public List<News> searchForFront(Map<String, Object> map,Integer pageIndex,Integ
      }
      fieldName  = fieldName.isEmpty()?"title":fieldName;
      fieldValue = "%"+fieldValue+"%" ;
-     return newsDao.getListForFront(fieldName,fieldValue,offset,pageSize) ;
+     return newsDao.getListForFront(fieldName,fieldValue,offset,pageSize,this.getWhereSql(tag)) ;
 
   }
 
-  public Integer getListForFrontCount(Map<String, Object> map) {
+  public Integer getListForFrontCount(Map<String, Object> map,String tag) {
 
     
     String fieldName  = "";
@@ -136,7 +149,7 @@ public List<News> searchForFront(Map<String, Object> map,Integer pageIndex,Integ
     }
     fieldName  = fieldName.isEmpty()?"title":fieldName;
     fieldValue = "%"+fieldValue+"%" ;
-    return newsDao.getListForFrontCount(fieldName,fieldValue) ;
+    return newsDao.getListForFrontCount(fieldName,fieldValue,this.getWhereSql(tag)) ;
     //QueryWrapper<News> wrapper = this.getSearchWrapper(map);
     //wrapper.leftJoin("news_categories","news.news_categories_code=news_categories.code");
     //wrapper.select("news.id,title,news_categories.name as news_categories_code,hot,visit,is_charge,price,sort,state,createtime");

@@ -59,21 +59,26 @@ public class ArticleController {
     public Object search(
         @RequestParam(name="cid",required=false,defaultValue="")    String cid,    
         @RequestParam(name="ctitle",required=false,defaultValue="")    String ctitle,  
+        @RequestParam(name="tag",required=false,defaultValue="")    String tag,  
         @RequestParam(name="pageSize",required=false,defaultValue="20")    Integer pageSize,    
         @RequestParam(name="pageIndex",required=false,defaultValue="0")    Integer pageIndex         
      ){
         HashMap<String,Object> mapWhere = new HashMap<String,Object>();
         
+        //String mTag = "";
         if (StrUtil.isNullOrEmpty(cid)==false){
             mapWhere.put("c.code",cid);
         }
         if (StrUtil.isNullOrEmpty(ctitle)==false){
             mapWhere.put("title",ctitle);
         }
-        //mapWhere.put("",news.getId());
-   
-        Object o = newsService.searchForFront(mapWhere,pageIndex,pageSize);
-        int totalCount = newsService.getListForFrontCount(mapWhere);
+
+        if (StrUtil.isNullOrEmpty(tag)==false){
+
+            tag = StrUtil.getClearString(tag);
+        }
+        Object o = newsService.searchForFront(mapWhere,pageIndex,pageSize,tag);
+        int totalCount = newsService.getListForFrontCount(mapWhere,tag);
         return RessponseMessge.OK(o, String.valueOf(totalCount));
      }
 

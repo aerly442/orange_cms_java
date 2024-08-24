@@ -20,13 +20,14 @@ public interface NewsDao extends BaseMapper<News> {
             " from news as n left join news_categories as c on n.news_categories_code=c.code  where  ${fieldName} like  #{fieldValue} order by n.id desc limit ${pageIndex},${pageSize}  ")
     List<News> getList(String fieldName,@Param("fieldValue") String fieldValue,Integer pageIndex,Integer pageSize);
 
+    //EXISTS (select 1 from news_tag where news.id=news_tag.newsid and tag like '%香港电影%')
     @Select("select n.id,title,c.code as newsCategoriesCode,hot,visit,is_charge as isCharge,price,n.sort,state,n.createtime,abstract\n" +
-            " from news as n left join news_categories as c on n.news_categories_code=c.code  where n.state=1 and  ${fieldName} like #{fieldValue} order by n.id desc limit ${pageIndex},${pageSize}  ")
-    List<News> getListForFront(String fieldName,@Param("fieldValue") String fieldValue,Integer pageIndex,Integer pageSize);
+            " from news as n left join news_categories as c on n.news_categories_code=c.code  where n.state=1 and  ${fieldName} like #{fieldValue} ${otherWhere} order by n.id desc limit ${pageIndex},${pageSize}  ")
+    List<News> getListForFront(String fieldName,@Param("fieldValue") String fieldValue,Integer pageIndex,Integer pageSize,String otherWhere);
 
     @Select("select count(1) \n" +
-    " from news as n left join news_categories as c on n.news_categories_code=c.code  where n.state=1 and  ${fieldName} like #{fieldValue}  ")
-    Integer getListForFrontCount(String fieldName,@Param("fieldValue") String fieldValue);
+    " from news as n left join news_categories as c on n.news_categories_code=c.code  where n.state=1 and  ${fieldName} like #{fieldValue} ${otherWhere} ")
+    Integer getListForFrontCount(String fieldName,@Param("fieldValue") String fieldValue,String otherWhere);
 
     @Select("select n.id,title,c.code as newsCategoriesCode,hot,visit,is_charge as isCharge,price,n.sort,state,n.createtime,abstract\n" +
     " from news as n left join news_categories as c on n.news_categories_code=c.code  where n.state=1 and c.createtime>'${createtime}'  order by n.visit desc limit 10  ")

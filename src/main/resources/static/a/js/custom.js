@@ -74,9 +74,9 @@ $(document).ready(function () {
         if (!$(".ajax-more-btn").hasClass('disabled')) {
 
             $(".ajax-more-btn").text("Loading...").addClass('loading');
-            var cid = $("#Code").val();
+            //var cid = $("#Code").val();
             var limit_start = pageIndex+1;
-            get_news_list(limit_start,cid) ;
+            get_news_list_by_ajax(limit_start) ;
 
         }
     });
@@ -128,11 +128,11 @@ $(document).ready(function () {
 
     }
 
-    function get_news_list(pageIndex,cid,ctitle){
+    function get_news_list(pageIndex,cid,ctitle,tag){
 
         $.ajax({
             type: "GET",
-            url: "/article/get_news_list?pageIndex=" + pageIndex + "&cid="+cid+"&ctitle="+ctitle, //
+            url: "/article/get_news_list?pageIndex=" + pageIndex + "&cid="+cid+"&ctitle="+ctitle+"&tag="+tag, //
             success: function (data) { //
                 if (data.code!= '1') {
                     let aryData = data.data ;
@@ -164,7 +164,7 @@ $(document).ready(function () {
                    
                     for(let i=0;i<aryData.length;i++){
                         let item = aryData[i] ;
-                        let temp = `<a href="/a/?tag=${item.tag}" rel="tag" style='font-size: 14px;'>${item.tag}</a> `;
+                        let temp = `<a href="/a/list.html?tag=${item.tag}" rel="tag" style='font-size: 14px;'>${item.tag}</a> `;
                         html += temp;
                     }
                     
@@ -256,25 +256,45 @@ function get_detail(){
     });
 
 }
+
+function get_news_list_by_ajax(pageIndex){
+
+    let aryData = location.href.split('=');
+    let cValue  = aryData[aryData.length-1] ;
+    let cid     = location.href.indexOf("cid")>0?cValue:"";
+    let ctitle  = location.href.indexOf("ctitle")>0?cValue:"";
+    let tag     = location.href.indexOf("tag")>0?cValue:"";
+
+    if (tag!=""){
+        $("#alinkTop").html(tag) ;
+    }
+
+    get_news_list(pageIndex,cid,ctitle,tag);
+
+}
     get_tag_list();
     get_hot_list()
 
     if (pageName && pageName ==="index"){
 
- 
-
-       get_news_list(1,"");
+       get_news_list(1,"","","");
     }
     if (pageName && pageName ==="list"){
 
+        /* 
         let aryData = location.href.split('=');
         let cValue  = aryData[aryData.length-1] ;
         let cid     = location.href.indexOf("cid")>0?cValue:"";
         let ctitle  = location.href.indexOf("ctitle")>0?cValue:"";
+        let tag     = location.href.indexOf("tag")>0?cValue:"";
 
- 
+        if (tag!=""){
+            $("#alinkTop").html(tag) ;
+        }
 
-        get_news_list(1,cid,ctitle);
+        get_news_list(1,cid,ctitle,tag);
+        */
+        get_news_list_by_ajax(1);
 
      }
     if (pageName && pageName ==="detail"){
